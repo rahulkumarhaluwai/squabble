@@ -1,35 +1,56 @@
-# 🎙️ Squabble
+# 💬 Squabble — A Modern Discord Clone
 
-**Squabble** is a modern, Discord-like web application that lets users create servers, join personal or group chats, and communicate through voice and video channels — all in real time.  
-
-Built with cutting-edge technologies like **Next.js**, **LiveKit**, and **Neon**, Squabble delivers a smooth, scalable, and feature-rich communication experience.
-
----
-
-## 🚀 Features
-
-- 💬 **Real-time chat** — Private and server-based messaging  
-- 🎥 **Voice & video channels** — Seamless group calls powered by LiveKit  
-- 🔐 **Authentication** — Secure sign-in using Clerk  
-- 🖼️ **Media uploads** — Profile pictures, server icons, and image sharing with UploadThing  
-- 🗄️ **Database** — Fast and serverless storage using Neon (PostgreSQL)  
-- 🧩 **Server management** — Create, join, and manage multiple servers easily  
-- 🌐 **Responsive UI** — Fully optimized for desktop and mobile
+Squabble is a **real-time communication platform** inspired by Discord.  
+Built with **Next.js**, it offers seamless **text, voice, and video chat** experiences — powered by modern web technologies like **Clerk**, **LiveKit**, and **Neon (PostgreSQL)**.
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Tech Stack
 
 | Category | Technology |
 |-----------|-------------|
-| Frontend | [Next.js](https://nextjs.org/) |
-| Authentication | [Clerk](https://clerk.com/) |
-| Database | [Neon](https://neon.tech/) |
-| Video & Audio | [LiveKit](https://livekit.io/) |
-| File Uploads | [UploadThing](https://uploadthing.com/) |
-| Styling | Tailwind CSS |
+| **Frontend Framework** | [Next.js](https://nextjs.org/) |
+| **Authentication** | [Clerk](https://clerk.com/) |
+| **Database** | [Neon (PostgreSQL)](https://neon.tech/) + [Prisma ORM](https://www.prisma.io/) |
+| **Video & Audio** | [LiveKit](https://livekit.io/) |
+| **File Uploads** | [UploadThing](https://uploadthing.com/) |
+| **Styling** | [Tailwind CSS](https://tailwindcss.com/)
 
-### 1️⃣ Clone the Repository
+---
+
+## ✨ Features
+
+- 🔐 Secure authentication with Clerk  
+- 💬 Real-time messaging and channel-based chats  
+- 🎙️ Voice and video rooms powered by LiveKit  
+- 🖼️ Image & file uploads via UploadThing  
+- ⚡ Lightning-fast data access with Neon + Prisma  
+- 🧭 Modern responsive UI with Tailwind CSS  
+- 🧱 Scalable Next.js architecture  
+
+---
+
+## 🛠️ Installation & Setup
+
+Follow these steps to run **Squabble** locally:
+
 ```bash
-git clone https://github.com/rahulkumarhaluwai/squabble.git
+# 1️⃣ Clone the repository
+git clone https://github.com/your-username/squabble.git
+
+# 2️⃣ Navigate into the project
 cd squabble
+
+# 3️⃣ Install dependencies
+npm install
+
+# 4️⃣ Set up environment variables
+cp .env.example .env.local
+# Fill in the values for:
+# CLERK_API_KEY, DATABASE_URL, LIVEKIT_API_KEY, UPLOADTHING_SECRET, etc.
+
+# 5️⃣ Push Prisma schema to database
+npx prisma db push
+
+# 6️⃣ Start the development server
+npm run dev
