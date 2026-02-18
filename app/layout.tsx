@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
 import "./globals.css";
+import localFont from "next/font/local";
 import { cn } from "@/lib/utils";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/providers/theme-provider";
@@ -8,9 +8,10 @@ import { ModalProvider } from "@/components/providers/modal-provider";
 import { SocketProvider } from "@/components/providers/socket-provider";
 import { QueryProvider } from "@/components/providers/query-provider";
 
-const font = Open_Sans({
+const font = localFont({
+  src: "./fonts/OpenSans-VariableFont_wght.ttf",
   variable: "--font-open-sans",
-  subsets: ["latin"]
+  weight: "100 900",
 });
 
 export const metadata: Metadata = {
