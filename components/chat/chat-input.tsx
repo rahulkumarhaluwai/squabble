@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import qs from "query-string";
+import qs,{type StringifiableRecord } from "query-string";
 
 import {
     Form,
@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation";
 
 interface ChatInputProps{
     apiUrl: string;
-    query: Record<string, any>;
+    query: StringifiableRecord;
     name:string;
     type:"conversation" | "channel";
 }

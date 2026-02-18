@@ -31,9 +31,11 @@ const formSchema = z.object({
     name:z.string().min(1,{
         message:"Server name is required."
     }),
-    imageUrl:z.string().min(1,{
-        message:"Server image is required."
-    })
+    imageUrl: z.object({
+  url: z.string().min(1, { message: "Server image is required." }),
+  type: z.string().optional()
+})
+
 });
 
 export const CreateServerModal=()=>{
@@ -44,7 +46,10 @@ export const CreateServerModal=()=>{
         resolver: zodResolver(formSchema),
         defaultValues:{
             name:"",
-            imageUrl:""
+            imageUrl:{
+              url:"",
+              type:""
+            }
         }
     });
 
@@ -52,7 +57,11 @@ export const CreateServerModal=()=>{
 
     const onSubmit=async (values: z.infer<typeof formSchema>)=>{
         try {
-          await axios.post("/api/servers", values);
+          await axios.post("/api/servers", {
+  ...values,
+  imageUrl: values.imageUrl.url
+});
+
 
           form.reset();
           router.refresh();

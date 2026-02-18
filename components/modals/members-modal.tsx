@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog"
 
 import { useModal } from "@/hooks/use-modal-store";
-import { ServerWithMembersWithProfiles } from "@/types";
+import { Server, Member, Profile } from "@/lib/generated/prisma";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { UserAvatar } from "@/components/user-avatar";
 import { Check, Gavel, Loader2, MoreVertical, Shield, ShieldAlert, ShieldCheck, ShieldQuestion } from "lucide-react";
@@ -30,6 +30,9 @@ import { MemberRole } from "@/lib/generated/prisma";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
+export type ServerWithMembersWithProfiles = Server & {
+  members: (Member & { profile: Profile })[];
+};
 
 const roleIconMap={
   "GUEST":null,

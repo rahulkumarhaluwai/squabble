@@ -73,14 +73,14 @@ export const ChatItem = ({
   }
 
    useEffect(()=>{
-   const handleKeyDown = (event: any)=>{
+   const handleKeyDown = (event: KeyboardEvent)=>{
     if(event.key === "Escape" || event.keyCode === 27){
       setIsEditing(false);
     }
    };
    window.addEventListener("keydown", handleKeyDown);
 
-   return () => window.removeEventListener("keyDown", handleKeyDown);
+   return () => window.removeEventListener("keydown", handleKeyDown);
    },[]);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -110,7 +110,7 @@ export const ChatItem = ({
     form.reset({
       content: content,
     })
-  },[content]);
+  },[content, form]);
 
   const [isImage, setIsImage] = useState<boolean | null>(null);
   const isAdmin = currentMember.role === MemberRole.ADMIN;
@@ -128,7 +128,7 @@ export const ChatItem = ({
         const res = await fetch(fileUrl, { method: "HEAD" });
         const contentType = res.headers.get("content-type") || "";
         setIsImage(contentType.startsWith("image/"));
-      } catch (e) {
+      } catch {
         setIsImage(false);
       }
     };

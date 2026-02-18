@@ -32,9 +32,13 @@ const formSchema = z.object({
     name:z.string().min(1,{
         message:"Server name is required."
     }),
-    imageUrl:z.string().min(1,{
-        message:"Server image is required."
-    })
+    imageUrl: z.object({
+  url: z.string().min(1, {
+    message: "Server image is required."
+  }),
+  type: z.string().optional()
+})
+
 });
 
 export const EditServerModal=()=>{
@@ -46,15 +50,22 @@ export const EditServerModal=()=>{
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues:{
-            name:"",
-            imageUrl:""
-        }
+  name:"",
+  imageUrl:{
+    url:"",
+    type:""
+  }
+}
+
     });
 
     useEffect(()=> {
       if(server){
         form.setValue("name",server.name);
-        form.setValue("imageUrl", server.imageUrl);
+        form.setValue("imageUrl", {
+  url: server.imageUrl
+});
+
       }
     },[server, form]);
 
@@ -62,7 +73,11 @@ export const EditServerModal=()=>{
 
     const onSubmit=async (values: z.infer<typeof formSchema>)=>{
         try {
-          await axios.patch(`/api/servers/${server?.id}`, values);
+          await axios.patch(`/api/servers/${server?.id}`, {
+  ...values,
+  imageUrl: values.imageUrl.url
+});
+
 
           form.reset();
           router.refresh();
